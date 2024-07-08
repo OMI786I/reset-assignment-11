@@ -1,6 +1,13 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Firebase/AuthProvider";
 
 const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
+  const handleSignOut = () => {
+    logout();
+  };
+
   const navLink = (
     <div className="flex-row md:flex-col gap-6  ">
       <NavLink to="/">
@@ -64,17 +71,31 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navLink}</ul>
         </div>
         <div className="navbar-end gap-2">
-          <div className="avatar">
-            <div className=" w-14 rounded-full">
-              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          {user ? (
+            <div className="flex items-center">
+              {" "}
+              <div className="avatar">
+                <div className=" w-14 rounded-full">
+                  <img src={user.photoURL} />
+                </div>
+              </div>
+              <button
+                className="btn btn-error text-white"
+                onClick={handleSignOut}
+              >
+                Log out
+              </button>
             </div>
-          </div>
-          <Link to="login">
-            <button className="btn">Login</button>
-          </Link>
-          <Link to="register">
-            <button className="btn btn-error text-white">Register </button>
-          </Link>
+          ) : (
+            <div className="flex">
+              <Link to="login">
+                <button className="btn">Login</button>
+              </Link>
+              <Link to="register">
+                <button className="btn btn-error text-white">Register </button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

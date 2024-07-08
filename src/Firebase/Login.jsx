@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { AuthContext } from "./AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [showPassWord, setShowPassWord] = useState(false);
+  const { signIn } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -14,12 +20,22 @@ const Login = () => {
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
-
-    console.log(email, password);
+    signIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+        navigate(location?.state ? location.state : "/");
+        toast.success("Successfully logged in");
+      })
+      .catch((error) => {
+        setError(error);
+        toast.error("Couldn't sign. Are you registered?");
+        console.error(error);
+      });
   };
 
   return (
     <div>
+      <Toaster />
       <div className="  ">
         <div className=" flex border-2 ">
           <div className="card w-[70%]">

@@ -11,6 +11,7 @@ import PendingAssignments from "./Components/PendingAssignments.jsx";
 import Login from "./Firebase/Login.jsx";
 import Register from "./Firebase/Register.jsx";
 import AuthProvider from "./Firebase/AuthProvider.jsx";
+import PrivateRoute from "./Firebase/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/assignments",
-        element: <Assignments></Assignments>,
+        element: (
+          <PrivateRoute>
+            <Assignments></Assignments>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/createAssignments",
