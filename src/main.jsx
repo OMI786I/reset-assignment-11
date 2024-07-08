@@ -8,6 +8,8 @@ import Home from "./Components/Home.jsx";
 import Assignments from "./Components/Assignments.jsx";
 import CreateAssignments from "./Components/CreateAssignments.jsx";
 import PendingAssignments from "./Components/PendingAssignments.jsx";
+import Login from "./Firebase/Login.jsx";
+import Register from "./Firebase/Register.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
       {
         path: "/pendingAssignments",
         element: <PendingAssignments></PendingAssignments>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
     ],
   },
