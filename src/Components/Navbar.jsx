@@ -27,7 +27,22 @@ const Navbar = () => {
       </NavLink>
       <NavLink to="/pendingAssignments">
         <button className="hover:border-green-500 border-transparent border-b-2 duration-150 hover:text-green-500 font-bold p-2  focus:border-green-500 focus:text-green-500">
-          pending assignmens
+          pending assignments
+        </button>
+      </NavLink>
+    </div>
+  );
+
+  const navLink2 = (
+    <div className="flex-row md:flex-col gap-6  ">
+      <NavLink to="/">
+        <button className="hover:border-green-500 border-transparent border-b-2 duration-150 hover:text-green-500 font-bold p-2  focus:border-green-500 focus:text-green-500">
+          Home
+        </button>
+      </NavLink>
+      <NavLink to="/assignments">
+        <button className="hover:border-green-500 border-transparent border-b-2 duration-150 hover:text-green-500 font-bold p-2  focus:border-green-500 focus:text-green-500">
+          assignments
         </button>
       </NavLink>
     </div>
@@ -58,7 +73,7 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              {navLink}
+              {user ? navLink : navLink2}
             </ul>
           </div>
           <div className="flex items-center ">
@@ -68,7 +83,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navLink}</ul>
+          <ul className="menu menu-horizontal px-1">
+            {user ? navLink : navLink2}
+          </ul>
         </div>
         <div className="navbar-end gap-2">
           {user ? (
