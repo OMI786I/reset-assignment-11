@@ -5,20 +5,33 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
   const [showPassWord, setShowPassWord] = useState(false);
+
+  const handleRegitser = (e) => {
+    e.preventDefault();
+    console.log(e.currentTarget);
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    const name = form.get("name");
+    const photo = form.get("photo");
+    console.log(email, password, name, photo);
+  };
+
   return (
     <div>
       <div className="  ">
         <div className=" flex border-2 ">
           <div className="card w-[70%]">
-            <form className="card-body">
+            <form className="card-body" onSubmit={handleRegitser}>
               <div className="form-control">
-                <h1 className="text-2xl font-bold text-center">
+                <h1 className="text-3xl md:text-5xl font-bold text-center">
                   Register now!
                 </h1>
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>
                 <input
+                  name="name"
                   type="text"
                   placeholder="name"
                   className="input input-bordered"
@@ -30,6 +43,7 @@ const Register = () => {
                   <span className="label-text">Email</span>
                 </label>
                 <input
+                  name="email"
                   type="email"
                   placeholder="email"
                   className="input input-bordered"
@@ -66,6 +80,7 @@ const Register = () => {
                   <span className="label-text">Photo URL</span>
                 </label>
                 <input
+                  name="photo"
                   type="text"
                   placeholder="photo url"
                   className="input input-bordered"

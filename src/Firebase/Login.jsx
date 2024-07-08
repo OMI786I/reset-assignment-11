@@ -2,23 +2,53 @@ import { useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const Login = () => {
   const [showPassWord, setShowPassWord] = useState(false);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(e.currentTarget);
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+
+    console.log(email, password);
+  };
+
   return (
     <div>
       <div className="  ">
         <div className=" flex border-2 ">
           <div className="card w-[70%]">
-            <form className="card-body">
+            <div className="">
               <div className="form-control">
-                <h1 className="text-2xl font-bold text-center">Log now!</h1>
+                <h1 className="text-3xl md:text-5xl font-bold text-center mb-2">
+                  Login now!
+                </h1>
               </div>
+              <p className="text-center">Sign in with social networks</p>
+              <div className="flex justify-center">
+                {" "}
+                <div className="flex gap-4">
+                  <button className="btn">
+                    <FcGoogle className="text-3xl" />
+                  </button>
+                  <button className="btn">
+                    <FaGithub className="text-3xl" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <form className="card-body" onSubmit={handleLogin}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
+                  name="email"
                   type="email"
                   placeholder="email"
                   className="input input-bordered"
@@ -78,7 +108,7 @@ const Login = () => {
         </div>
         <p className="md:hidden">
           Do not have an account?{" "}
-          <Link to="/login" className="text-blue-700 underline">
+          <Link to="/register" className="text-blue-700 underline">
             Register
           </Link>
         </p>
