@@ -5,6 +5,9 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./Components/Root.jsx";
 import Home from "./Components/Home.jsx";
+import Assignments from "./Components/Assignments.jsx";
+import CreateAssignments from "./Components/CreateAssignments.jsx";
+import PendingAssignments from "./Components/PendingAssignments.jsx";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +17,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/assignments",
+        element: <Assignments></Assignments>,
+      },
+      {
+        path: "/createAssignments",
+        element: <CreateAssignments></CreateAssignments>,
+      },
+      {
+        path: "/pendingAssignments",
+        element: <PendingAssignments></PendingAssignments>,
       },
     ],
   },

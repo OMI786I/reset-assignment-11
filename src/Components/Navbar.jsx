@@ -1,4 +1,31 @@
+import { Link, NavLink } from "react-router-dom";
+
 const Navbar = () => {
+  const navLink = (
+    <div className="flex-row md:flex-col gap-6  ">
+      <NavLink to="/">
+        <button className="hover:border-yellow-500 border-transparent border-2 duration-150 hover:text-yellow-500 font-bold p-2 rounded-lg focus:border-yellow-500 focus:text-yellow-500">
+          Home
+        </button>
+      </NavLink>
+      <NavLink to="/assignments">
+        <button className="hover:border-yellow-500 border-transparent border-2 duration-150 hover:text-yellow-500 font-bold p-2 rounded-lg focus:border-yellow-500 focus:text-yellow-500">
+          assignments
+        </button>
+      </NavLink>
+      <NavLink to="/createAssignments">
+        <button className="hover:border-yellow-500 border-transparent border-2 duration-150 hover:text-yellow-500 font-bold p-2 rounded-lg focus:border-yellow-500 focus:text-yellow-500">
+          create assignments
+        </button>
+      </NavLink>
+      <NavLink to="/pendingAssignments">
+        <button className="hover:border-yellow-500 border-transparent border-2 duration-150 hover:text-yellow-500 font-bold p-2 rounded-lg focus:border-yellow-500 focus:text-yellow-500">
+          pending assignmens
+        </button>
+      </NavLink>
+    </div>
+  );
+
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -24,52 +51,21 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              {navLink}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <div className="flex items-center">
+            {" "}
+            <img src="pngegg_(1).png" className="w-[30px]"></img>
+            <p className="font-bold hidden md:block">Poralekha</p>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navLink}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <a className="btn">Register </a>
+          <a className="btn">Login</a>
         </div>
       </div>
     </div>
