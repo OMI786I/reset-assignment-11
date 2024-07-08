@@ -1,5 +1,12 @@
+import { Toaster } from "react-hot-toast";
+
 const Assignments = () => {
-  return <div>This is assignments page</div>;
+  return (
+    <div>
+      <Toaster />
+      This is assignments page
+    </div>
+  );
 };
 
 export default Assignments;

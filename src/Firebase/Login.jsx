@@ -22,20 +22,18 @@ const Login = () => {
     const password = form.get("password");
     signIn(email, password)
       .then((result) => {
-        console.log(result.user);
-        navigate(location?.state ? location.state : "/");
         toast.success("Successfully logged in");
+
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
-        setError(error);
         toast.error("Couldn't sign. Are you registered?");
-        console.error(error);
+        setError(error);
       });
   };
 
   return (
     <div>
-      <Toaster />
       <div className="  ">
         <div className=" flex border-2 ">
           <div className="card w-[70%]">
