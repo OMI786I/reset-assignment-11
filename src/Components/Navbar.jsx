@@ -4,22 +4,22 @@ const Navbar = () => {
   const navLink = (
     <div className="flex-row md:flex-col gap-6  ">
       <NavLink to="/">
-        <button className="hover:border-yellow-500 border-transparent border-2 duration-150 hover:text-yellow-500 font-bold p-2 rounded-lg focus:border-yellow-500 focus:text-yellow-500">
+        <button className="hover:border-green-500 border-transparent border-b-2 duration-150 hover:text-green-500 font-bold p-2  focus:border-green-500 focus:text-green-500">
           Home
         </button>
       </NavLink>
       <NavLink to="/assignments">
-        <button className="hover:border-yellow-500 border-transparent border-2 duration-150 hover:text-yellow-500 font-bold p-2 rounded-lg focus:border-yellow-500 focus:text-yellow-500">
+        <button className="hover:border-green-500 border-transparent border-b-2 duration-150 hover:text-green-500 font-bold p-2  focus:border-green-500 focus:text-green-500">
           assignments
         </button>
       </NavLink>
       <NavLink to="/createAssignments">
-        <button className="hover:border-yellow-500 border-transparent border-2 duration-150 hover:text-yellow-500 font-bold p-2 rounded-lg focus:border-yellow-500 focus:text-yellow-500">
+        <button className="hover:border-green-500 border-transparent border-b-2 duration-150 hover:text-green-500 font-bold p-2  focus:border-green-500 focus:text-green-500">
           create assignments
         </button>
       </NavLink>
       <NavLink to="/pendingAssignments">
-        <button className="hover:border-yellow-500 border-transparent border-2 duration-150 hover:text-yellow-500 font-bold p-2 rounded-lg focus:border-yellow-500 focus:text-yellow-500">
+        <button className="hover:border-green-500 border-transparent border-b-2 duration-150 hover:text-green-500 font-bold p-2  focus:border-green-500 focus:text-green-500">
           pending assignmens
         </button>
       </NavLink>
@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-100 shadow-1xl">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -54,17 +54,22 @@ const Navbar = () => {
               {navLink}
             </ul>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center ">
             {" "}
-            <img src="pngegg_(1).png" className="w-[30px]"></img>
+            <img src="pngegg_(1).png" className="w-[30px] ]"></img>
             <p className="font-bold hidden md:block">Poralekha</p>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLink}</ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Register </a>
+        <div className="navbar-end gap-2">
+          <div className="avatar">
+            <div className=" w-14 rounded-full">
+              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            </div>
+          </div>
+          <a className="btn btn-error text-white">Register </a>
           <a className="btn">Login</a>
         </div>
       </div>
