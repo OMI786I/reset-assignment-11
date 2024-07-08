@@ -8,6 +8,8 @@ const Navbar = () => {
     logout();
   };
 
+  console.log(user);
+
   const navLink = (
     <div className="flex-row md:flex-col gap-6  ">
       <NavLink to="/">
@@ -87,33 +89,48 @@ const Navbar = () => {
             {user ? navLink : navLink2}
           </ul>
         </div>
-        <div className="navbar-end gap-2">
-          {user ? (
-            <div className="flex items-center">
-              {" "}
-              <div className="avatar">
-                <div className=" w-14 rounded-full">
-                  <img src={user.photoURL} />
+        {user ? (
+          <div className="navbar-end gap-2">
+            <div className="dropdown dropdown-end">
+              <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src={user.photoURL}></img>
                 </div>
-              </div>
-              <button
-                className="btn btn-error text-white"
-                onClick={handleSignOut}
+              </label>
+              <ul
+                tabIndex="0"
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
-                Log out
-              </button>
+                {" "}
+                <li className="font-bold border-2 text-center">
+                  {user.displayName}
+                </li>
+                <li>
+                  <a>Item 1</a>
+                </li>
+                <li>
+                  <a>Item 2</a>
+                </li>
+              </ul>
             </div>
-          ) : (
-            <div className="flex">
-              <Link to="login">
-                <button className="btn">Login</button>
-              </Link>
-              <Link to="register">
-                <button className="btn btn-error text-white">Register </button>
-              </Link>
-            </div>
-          )}
-        </div>
+            <button
+              className="btn btn-success text-white"
+              onClick={handleSignOut}
+            >
+              LogOut
+            </button>
+          </div>
+        ) : (
+          <div className="navbar-end gap-2">
+            {" "}
+            <NavLink to="login">
+              <button className="btn btn-success text-white">Login</button>
+            </NavLink>
+            <NavLink to="register">
+              <button className="btn btn-warning text-white">Register</button>
+            </NavLink>
+          </div>
+        )}
       </div>
     </div>
   );
