@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./AuthProvider";
+import { updateProfile } from "firebase/auth";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const [showPassWord, setShowPassWord] = useState(false);
-
+  const { createUser } = useContext(AuthContext);
   const handleRegitser = (e) => {
     e.preventDefault();
     console.log(e.currentTarget);
@@ -14,11 +17,38 @@ const Register = () => {
     const password = form.get("password");
     const name = form.get("name");
     const photo = form.get("photo");
-    console.log(email, password, name, photo);
+
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters long.");
+      return;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      toast.error("Password must contain at least one uppercase letter.");
+      return;
+    }
+    if (!/[a-z]/.test(password)) {
+      toast.error("Password must contain at least one lowercase letter.");
+      return;
+    }
+    createUser(email, password)
+      .then((result) => {
+        toast.success("successfully logged in");
+        console.log(result);
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo,
+        });
+      })
+      .catch((error) => {
+        toast.error("There was an error");
+        console.log(error);
+      });
   };
 
   return (
     <div>
+      <Toaster />
       <div className="  ">
         <div className=" flex border-2 ">
           <div className="card w-[70%]">
