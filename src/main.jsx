@@ -13,6 +13,7 @@ import AuthProvider from "./Firebase/AuthProvider.jsx";
 import PrivateRoute from "./Firebase/PrivateRoute.jsx";
 import UpdatedAssignment from "./Components/UpdatedAssignment.jsx";
 import Details from "./Components/Details.jsx";
+import SubmissionForm from "./Components/SubmissionForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/submission/:id",
+        element: <SubmissionForm></SubmissionForm>,
       },
     ],
   },

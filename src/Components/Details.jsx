@@ -1,18 +1,34 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { FcDocument } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
 import { FcBiohazard } from "react-icons/fc";
 import { FcLeave } from "react-icons/fc";
 import { format } from "date-fns";
+import { AuthContext } from "../Firebase/AuthProvider";
 
 const Details = () => {
   const params = useParams();
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  console.log(data);
+  const { user } = useContext(AuthContext);
+  const SubmitterEmail = user.email;
+
+  const submitData = { ...data, SubmitterEmail };
+
+  const handleTakeAssignment = () => {
+    axios
+      .post("http://localhost:5000/submission", submitData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     setLoading(true);
     axios
@@ -73,9 +89,14 @@ const Details = () => {
               </div>
             </div>
 
-            <button className="btn btn-success text-white">
-              Take Assignment
-            </button>
+            <Link to={`/submission/${data._id}`}>
+              <button
+                className="btn btn-success text-white"
+                onClick={() => handleTakeAssignment()}
+              >
+                Take Assignment
+              </button>
+            </Link>
           </div>
         </div>
       </div>
