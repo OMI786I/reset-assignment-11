@@ -5,9 +5,10 @@ import { FcBiohazard } from "react-icons/fc";
 import { AuthContext } from "../Firebase/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 const Assignments = () => {
   const [data, setData] = useState([]);
-  const [remaining, setRemaining] = useState(data);
+
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState("");
   const { user } = useContext(AuthContext);
@@ -129,9 +130,11 @@ const Assignments = () => {
                       </button>
                     </div>
                     <div className="card-actions justify-end">
-                      <button className="btn btn-success text-white">
-                        Update
-                      </button>
+                      <Link to={`/update/${data._id}`}>
+                        <button className="btn btn-success text-white">
+                          Update
+                        </button>
+                      </Link>
                     </div>
                     <div className="card-actions justify-end">
                       <button className="btn btn-success text-white">
