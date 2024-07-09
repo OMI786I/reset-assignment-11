@@ -38,7 +38,7 @@ const Assignments = () => {
       <div>
         <div className="text-center my-4">
           <label htmlFor="sortOrder" className="font-bold mr-2">
-            Sort by Difficulty:
+            FIlter by Difficulty:
           </label>
           <select
             id="sortOrder"
