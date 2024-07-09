@@ -22,7 +22,7 @@ const CreateAssignments = () => {
     const description = form.description.value;
     const marks = form.marks.value;
     const difficulty = form.difficulty.value;
-
+    const photo = form.photo.value;
     const newData = {
       title,
       description,
@@ -30,6 +30,7 @@ const CreateAssignments = () => {
       difficulty,
       userEmail,
       startDate,
+      photo,
     };
     console.log(newData);
 
