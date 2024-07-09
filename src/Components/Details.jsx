@@ -43,33 +43,39 @@ const Details = () => {
       <div>
         <div className="flex  md:gap-5 flex-col md:flex-row ">
           <div className="md:w-[50%]">
-            <img src={data.photo} className="w-full"></img>
+            <img src={data.photo} className="w-full md:h-96"></img>
           </div>
-          <div className="md:w-[49%] p-3 ">
-            <h1 className="text-2xl font-bold">{data.title}</h1>
-            <div className="flex items-center gap-1 my-2">
-              <FcDocument></FcDocument>
-              <h1 className="text-xl underline">Details</h1>
+          <div className="md:w-[49%] p-3 flex justify-between flex-col gap-5 ">
+            <div>
+              <h1 className="text-2xl font-bold">{data.title}</h1>
+              <div className="flex items-center gap-1 my-2">
+                <FcDocument></FcDocument>
+                <h1 className="text-xl underline">Details</h1>
+              </div>
+
+              <p>{data.description}</p>
+              <div className="flex gap-4 mt-6">
+                <div className="flex justify-center items-center flex-col">
+                  <FcOk className="text-xl md:text-2xl"></FcOk>
+                  <h1 className="text-md font-bold">Marks</h1>
+                  <p>{data.marks}</p>
+                </div>
+                <div className="flex justify-center items-center flex-col">
+                  <FcBiohazard className="text-xl md:text-2xl" />
+                  <h1 className="text-md font-bold">Difficulty</h1>
+                  <p>{data.difficulty}</p>
+                </div>
+                <div className="flex justify-center items-center flex-col">
+                  <FcLeave className="text-xl md:text-2xl" />
+                  <h1 className="text-md font-bold">Date</h1>
+                  <p>{date}</p>
+                </div>
+              </div>
             </div>
 
-            <p>{data.description}</p>
-            <div className="flex gap-4 mt-6">
-              <div className="flex justify-center items-center flex-col">
-                <FcOk className="text-xl md:text-2xl"></FcOk>
-                <h1 className="text-md font-bold">Marks</h1>
-                <p>{data.marks}</p>
-              </div>
-              <div className="flex justify-center items-center flex-col">
-                <FcBiohazard className="text-xl md:text-2xl" />
-                <h1 className="text-md font-bold">Difficulty</h1>
-                <p>{data.difficulty}</p>
-              </div>
-              <div className="flex justify-center items-center flex-col">
-                <FcLeave className="text-xl md:text-2xl" />
-                <h1 className="text-md font-bold">Date</h1>
-                <p>{date}</p>
-              </div>
-            </div>
+            <button className="btn btn-success text-white">
+              Take Assignment
+            </button>
           </div>
         </div>
       </div>
