@@ -30,12 +30,12 @@ const Assignments = () => {
   } else
     return (
       <div>
-        <div className="grid grid-cols-3 mt-10">
+        <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
           {data.map((data) => (
             <div key={data._id}>
-              <div className="card bg-base-100 w-96 shadow-xl">
+              <div className="card bg-base-100 w-auto md:w-80 xl:w-96 shadow-xl">
                 <figure>
-                  <img src={data.photo} alt="Shoes" />
+                  <img src={data.photo} alt="Shoes" className="w-96 h-56" />
                 </figure>
                 <div className="card-body">
                   <h2 className="card-title text-2xl">{data.title}</h2>

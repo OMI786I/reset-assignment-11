@@ -76,13 +76,11 @@ const CreateAssignments = () => {
           <label className="label">
             <span className="label-text text-white"> description</span>
           </label>
-          <input
+          <textarea
             name="description"
-            type="text"
             placeholder="description"
-            className="input input-bordered"
-            required
-          />
+            className="textarea textarea-bordered textarea-lg w-full resize-none"
+          ></textarea>
         </div>
         <div className="form-control">
           <label className="label">
