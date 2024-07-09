@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "./AuthProvider";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [showPassWord, setShowPassWord] = useState(false);

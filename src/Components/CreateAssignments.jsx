@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import axios from "axios";
 
 import "react-datepicker/dist/react-datepicker.css";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const CreateAssignments = () => {
   const { user } = useContext(AuthContext);
@@ -50,7 +50,6 @@ const CreateAssignments = () => {
 
   return (
     <div>
-      <Toaster />
       <form
         className="card-body md:w-[50%] mx-auto bg-green-600 rounded-2xl mt-10 "
         onSubmit={handleAddAssignment}

@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { FcOk } from "react-icons/fc";
 import { FcBiohazard } from "react-icons/fc";
 import { AuthContext } from "../Firebase/AuthProvider";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 const Assignments = () => {
@@ -75,7 +75,6 @@ const Assignments = () => {
   } else
     return (
       <div>
-        <Toaster />
         <div className="text-center my-4">
           <label htmlFor="sortOrder" className="font-bold mr-2">
             FIlter by Difficulty:

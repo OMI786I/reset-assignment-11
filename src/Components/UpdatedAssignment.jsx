@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
-import toast, { Toaster } from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdatedAssignment = () => {
   const params = useParams();
@@ -10,6 +10,7 @@ const UpdatedAssignment = () => {
   const [loading, setLoading] = useState(true);
 
   const [startDate, setStartDate] = useState(new Date());
+  const navigate = useNavigate();
 
   console.log(startDate);
 
@@ -57,7 +58,7 @@ const UpdatedAssignment = () => {
         if (response.data.modifiedCount > 0) {
           toast.success("You have successfully updated");
         }
-        console.log(response);
+        navigate("/assignments");
       })
       .catch((error) => {
         toast.error("There was an error updated the data");
@@ -74,7 +75,6 @@ const UpdatedAssignment = () => {
   } else
     return (
       <div>
-        <Toaster />
         <form
           className="card-body md:w-[50%] mx-auto bg-green-600 rounded-2xl mt-10 "
           onSubmit={handleUpdateAssignment}
@@ -156,7 +156,7 @@ const UpdatedAssignment = () => {
           </div>
 
           <div className="form-control mt-6">
-            <button className="btn btn-warning">Add</button>
+            <button className="btn btn-warning">Update</button>
           </div>
         </form>
       </div>

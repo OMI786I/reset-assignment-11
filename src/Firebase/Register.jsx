@@ -4,7 +4,7 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 import { updateProfile } from "firebase/auth";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [showPassWord, setShowPassWord] = useState(false);
@@ -48,7 +48,6 @@ const Register = () => {
 
   return (
     <div>
-      <Toaster />
       <div className="  ">
         <div className=" flex border-2 ">
           <div className="card w-[70%]">
