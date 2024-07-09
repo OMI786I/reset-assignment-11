@@ -7,6 +7,7 @@ import { FcBiohazard } from "react-icons/fc";
 import { FcLeave } from "react-icons/fc";
 import { format } from "date-fns";
 import { AuthContext } from "../Firebase/AuthProvider";
+import toast from "react-hot-toast";
 
 const Details = () => {
   const params = useParams();
@@ -16,13 +17,31 @@ const Details = () => {
   const { user } = useContext(AuthContext);
   const SubmitterEmail = user.email;
   const status = "pending";
+  const title = data.title;
+  const description = data.description;
+  const marks = data.marks;
+  const difficulty = data.difficulty;
+  const userEmail = data.userEmail;
+  const startDate = data.startDate;
+  const photo = data.photo;
 
-  const submitData = { ...data, SubmitterEmail, status };
+  const submitData = {
+    title,
+    description,
+    marks,
+    difficulty,
+    userEmail,
+    startDate,
+    photo,
+    SubmitterEmail,
+    status,
+  };
 
   const handleTakeAssignment = () => {
     axios
       .post("http://localhost:5000/submission", submitData)
       .then((response) => {
+        toast.success("successfully taken the assignment");
         console.log(response);
       })
       .catch((error) => {
