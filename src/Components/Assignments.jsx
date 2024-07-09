@@ -1,17 +1,20 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FcOk } from "react-icons/fc";
 import { FcBiohazard } from "react-icons/fc";
-
+import { AuthContext } from "../Firebase/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
+import Swal from "sweetalert2";
 const Assignments = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
+  const [remaining, setRemaining] = useState(data);
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState("");
+  const { user } = useContext(AuthContext);
 
   const handleSort = (order) => {
     setSortOrder(order);
   };
-  console.log(data);
 
   useEffect(() => {
     setLoading(true);
@@ -27,6 +30,41 @@ const Assignments = () => {
       });
   }, [sortOrder]);
 
+  //delete operation
+
+  const handleDelete = (id, email) => {
+    if (user.email == email) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .delete(`http://localhost:5000/createdAssignment/${id}`)
+            .then((res) => {
+              console.log(res);
+              if (res.data.deletedCount > 0) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+                const remaining = data.filter((data) => data._id !== id);
+                setData(remaining);
+              }
+            });
+        }
+      });
+    } else {
+      toast.error("you are not the owner of this assignment");
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -36,6 +74,7 @@ const Assignments = () => {
   } else
     return (
       <div>
+        <Toaster />
         <div className="text-center my-4">
           <label htmlFor="sortOrder" className="font-bold mr-2">
             FIlter by Difficulty:
@@ -80,7 +119,12 @@ const Assignments = () => {
                   </div>
                   <div className="flex gap-3">
                     <div className="card-actions justify-end">
-                      <button className="btn btn-success text-white">
+                      <button
+                        className="btn btn-success text-white"
+                        onClick={() => {
+                          handleDelete(data._id, data.userEmail);
+                        }}
+                      >
                         Delete
                       </button>
                     </div>
