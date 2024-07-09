@@ -12,6 +12,7 @@ import Register from "./Firebase/Register.jsx";
 import AuthProvider from "./Firebase/AuthProvider.jsx";
 import PrivateRoute from "./Firebase/PrivateRoute.jsx";
 import UpdatedAssignment from "./Components/UpdatedAssignment.jsx";
+import Details from "./Components/Details.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UpdatedAssignment></UpdatedAssignment>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/details/:id",
+        element: (
+          <PrivateRoute>
+            <Details></Details>
           </PrivateRoute>
         ),
       },

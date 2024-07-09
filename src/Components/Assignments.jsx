@@ -136,9 +136,12 @@ const Assignments = () => {
                       </Link>
                     </div>
                     <div className="card-actions justify-end">
-                      <button className="btn btn-success text-white">
-                        View
-                      </button>
+                      <Link to={`/details/${data._id}`}>
+                        {" "}
+                        <button className="btn btn-success text-white">
+                          View
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
