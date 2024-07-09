@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../Firebase/AuthProvider";
-import React, { useState } from "react";
+import { useState } from "react";
 import DatePicker from "react-datepicker";
+import axios from "axios";
 
 import "react-datepicker/dist/react-datepicker.css";
+import toast, { Toaster } from "react-hot-toast";
 
 const CreateAssignments = () => {
   const { user } = useContext(AuthContext);
@@ -11,10 +13,47 @@ const CreateAssignments = () => {
   const userEmail = user.email;
   console.log(userEmail);
   console.log(startDate);
+
+  const handleAddAssignment = (event) => {
+    event.preventDefault();
+    const form = event.target;
+
+    const title = form.title.value;
+    const description = form.description.value;
+    const marks = form.marks.value;
+    const difficulty = form.difficulty.value;
+
+    const newData = {
+      title,
+      description,
+      marks,
+      difficulty,
+      userEmail,
+      startDate,
+    };
+    console.log(newData);
+
+    axios
+      .post("http://localhost:5000/createdAssignment", newData)
+      .then((response) => {
+        if (response.data.insertedId) {
+          toast.success("You have successfully added");
+        }
+        console.log(response);
+      })
+      .catch((error) => {
+        toast.error("There was an error adding the data");
+        console.log(error);
+      });
+  };
+
   return (
     <div>
-      {" "}
-      <form className="card-body md:w-[50%] mx-auto bg-green-600 rounded-2xl mt-10 ">
+      <Toaster />
+      <form
+        className="card-body md:w-[50%] mx-auto bg-green-600 rounded-2xl mt-10 "
+        onSubmit={handleAddAssignment}
+      >
         <h1 className="text-center font-bold text-3xl underline text-white ">
           {" "}
           You can add Assignment here
