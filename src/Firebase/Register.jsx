@@ -122,12 +122,7 @@ const Register = () => {
             </form>
           </div>
           <div className="w-[30%] hidden md:inline">
-            <div
-              className="hero min-h-screen min-w-screen"
-              style={{
-                backgroundImage: "url(https://i.ibb.co/DDMfDxD/5498400.jpg)",
-              }}
-            >
+            <div className="hero min-h-screen min-w-screen bg-green-600">
               <div className="hero-content text-neutral-content text-center">
                 <div className="max-w-md">
                   <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
