@@ -15,8 +15,9 @@ const Details = () => {
   const [data, setData] = useState([]);
   const { user } = useContext(AuthContext);
   const SubmitterEmail = user.email;
+  const status = "pending";
 
-  const submitData = { ...data, SubmitterEmail };
+  const submitData = { ...data, SubmitterEmail, status };
 
   const handleTakeAssignment = () => {
     axios
