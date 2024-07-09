@@ -5,6 +5,7 @@ import { FcDocument } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
 import { FcBiohazard } from "react-icons/fc";
 import { FcLeave } from "react-icons/fc";
+import { format } from "date-fns";
 
 const Details = () => {
   const params = useParams();
@@ -25,6 +26,12 @@ const Details = () => {
         setLoading(false);
       });
   }, []);
+
+  const date = data.startDate
+    ? format(data.startDate, "dd MMMM yyyy")
+    : "date not available";
+  console.log(date);
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -34,11 +41,11 @@ const Details = () => {
   } else
     return (
       <div>
-        <div className="flex gap-5">
-          <div className="w-[50%]">
-            <img src={data.photo}></img>
+        <div className="flex  md:gap-5 flex-col md:flex-row ">
+          <div className="md:w-[50%]">
+            <img src={data.photo} className="w-full"></img>
           </div>
-          <div className="w-[49%]">
+          <div className="md:w-[49%] p-3 ">
             <h1 className="text-2xl font-bold">{data.title}</h1>
             <div className="flex items-center gap-1 my-2">
               <FcDocument></FcDocument>
@@ -49,18 +56,18 @@ const Details = () => {
             <div className="flex gap-4 mt-6">
               <div className="flex justify-center items-center flex-col">
                 <FcOk className="text-xl md:text-2xl"></FcOk>
-                <h1 className="text-md">Marks</h1>
+                <h1 className="text-md font-bold">Marks</h1>
                 <p>{data.marks}</p>
               </div>
               <div className="flex justify-center items-center flex-col">
                 <FcBiohazard className="text-xl md:text-2xl" />
-                <h1 className="text-md">Difficulty</h1>
+                <h1 className="text-md font-bold">Difficulty</h1>
                 <p>{data.difficulty}</p>
               </div>
               <div className="flex justify-center items-center flex-col">
                 <FcLeave className="text-xl md:text-2xl" />
-                <h1 className="text-md">Date</h1>
-                <p>{data.startDate}</p>
+                <h1 className="text-md font-bold">Date</h1>
+                <p>{date}</p>
               </div>
             </div>
           </div>
