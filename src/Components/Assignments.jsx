@@ -6,11 +6,17 @@ import { FcBiohazard } from "react-icons/fc";
 const Assignments = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
+  const [sortOrder, setSortOrder] = useState("");
+
+  const handleSort = (order) => {
+    setSortOrder(order);
+  };
   console.log(data);
 
   useEffect(() => {
+    setLoading(true);
     axios
-      .get("http://localhost:5000/createdAssignment")
+      .get(`http://localhost:5000/createdAssignment?difficulty=${sortOrder}`)
       .then((assignment) => {
         setData(assignment.data);
         setLoading(false);
@@ -19,7 +25,7 @@ const Assignments = () => {
         console.error(error);
         setLoading(false);
       });
-  }, []);
+  }, [sortOrder]);
 
   if (loading) {
     return (
@@ -30,6 +36,23 @@ const Assignments = () => {
   } else
     return (
       <div>
+        <div className="text-center my-4">
+          <label htmlFor="sortOrder" className="font-bold mr-2">
+            Sort by Difficulty:
+          </label>
+          <select
+            id="sortOrder"
+            value={sortOrder}
+            onChange={(e) => handleSort(e.target.value)}
+            className="border rounded p-2"
+          >
+            <option value="">All</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        ;
         <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
           {data.map((data) => (
             <div key={data._id}>
