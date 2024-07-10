@@ -8,7 +8,6 @@ const MyList = () => {
   const { user } = useContext(AuthContext);
   const email = user.email;
 
-  console.log(email);
   useEffect(() => {
     setLoading(true);
     axios
@@ -39,6 +38,7 @@ const MyList = () => {
             <th>status</th>
             <th>marks</th>
             <th>obtainedMarks</th>
+            <th>Feedback</th>
           </thead>
           <tbody>
             {data.map((data) => (
@@ -46,6 +46,7 @@ const MyList = () => {
                 <td>{data.title}</td>
                 <td>{data.status}</td> <td>{data.marks}</td>{" "}
                 <td> {data.obtainedMarks}</td>
+                <td> {data.feedback}</td>
               </tr>
             ))}
           </tbody>

@@ -39,7 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/pendingAssignments",
-        element: <PendingAssignments></PendingAssignments>,
+        element: (
+          <PrivateRoute>
+            <PendingAssignments></PendingAssignments>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/update/:id",
@@ -73,6 +77,7 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+
       {
         path: "/submission/:id",
         element: <SubmissionForm></SubmissionForm>,

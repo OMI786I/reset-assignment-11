@@ -16,6 +16,9 @@ const Details = () => {
   const [data, setData] = useState([]);
   const { user } = useContext(AuthContext);
   const submitterEmail = user.email;
+  const name = user.reloadUserInfo.screenName;
+
+  const submitterName = user.displayName ? user.displayName : name;
   const status = "pending";
   const obtainedMarks = "not yet evaluated";
   const title = data.title;
@@ -25,6 +28,7 @@ const Details = () => {
   const userEmail = data.userEmail;
   const startDate = data.startDate;
   const photo = data.photo;
+  const feedback = "No feedback yet";
 
   const submitData = {
     title,
@@ -37,6 +41,8 @@ const Details = () => {
     submitterEmail,
     status,
     obtainedMarks,
+    submitterName,
+    feedback,
   };
 
   const handleTakeAssignment = () => {

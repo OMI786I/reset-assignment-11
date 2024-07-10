@@ -67,9 +67,6 @@ const Login = () => {
                   <button className="btn" onClick={handleGoogle}>
                     <FcGoogle className="text-3xl" />
                   </button>
-                  <button className="btn" onClick={handleGitHub}>
-                    <FaGithub className="text-3xl" />
-                  </button>
                 </div>
               </div>
             </div>

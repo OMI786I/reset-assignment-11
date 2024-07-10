@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 import MyList from "./MyList";
+import AvatarTable from "./AvatarTable";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -31,6 +32,11 @@ const Navbar = () => {
       <NavLink to="/pendingAssignments">
         <button className="hover:border-green-500 border-transparent border-b-2 duration-150 hover:text-green-500 font-bold p-2  focus:border-green-500 focus:text-green-500">
           pending assignments
+        </button>
+      </NavLink>
+      <NavLink to="/list">
+        <button className="hover:border-green-500 border-transparent border-b-2 duration-150 hover:text-green-500 font-bold p-2  focus:border-green-500 focus:text-green-500">
+          My Submitted assignments
         </button>
       </NavLink>
     </div>
@@ -114,7 +120,9 @@ const Navbar = () => {
                   <li className="font-bold border-2 text-center">
                     My Submitted Assignment
                   </li>
-                  <MyList></MyList>
+                  <li>
+                    <AvatarTable></AvatarTable>
+                  </li>
                 </ul>
               </div>
             </div>
