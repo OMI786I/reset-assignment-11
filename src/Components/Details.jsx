@@ -15,8 +15,9 @@ const Details = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const { user } = useContext(AuthContext);
-  const SubmitterEmail = user.email;
+  const submitterEmail = user.email;
   const status = "pending";
+  const obtainedMarks = "not yet evaluated";
   const title = data.title;
   const description = data.description;
   const marks = data.marks;
@@ -33,8 +34,9 @@ const Details = () => {
     userEmail,
     startDate,
     photo,
-    SubmitterEmail,
+    submitterEmail,
     status,
+    obtainedMarks,
   };
 
   const handleTakeAssignment = () => {

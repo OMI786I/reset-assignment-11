@@ -14,6 +14,7 @@ import PrivateRoute from "./Firebase/PrivateRoute.jsx";
 import UpdatedAssignment from "./Components/UpdatedAssignment.jsx";
 import Details from "./Components/Details.jsx";
 import SubmissionForm from "./Components/SubmissionForm.jsx";
+import MyList from "./Components/MyList.jsx";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Details></Details>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/list",
+        element: (
+          <PrivateRoute>
+            <MyList></MyList>
           </PrivateRoute>
         ),
       },
