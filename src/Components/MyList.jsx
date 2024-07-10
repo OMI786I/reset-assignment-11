@@ -32,21 +32,20 @@ const MyList = () => {
     );
   } else
     return (
-      <div>
-        <table className="table">
+      <div className="overflow-auto">
+        <table className="table table-xs">
           <thead>
             <th>Title</th>
             <th>status</th>
             <th>marks</th>
             <th>obtainedMarks</th>
-            <th>feedback</th>
           </thead>
           <tbody>
             {data.map((data) => (
               <tr key={data._id}>
                 <td>{data.title}</td>
                 <td>{data.status}</td> <td>{data.marks}</td>{" "}
-                <td> {data.obtainedMarks}</td> <td> {data.feedback}</td>
+                <td> {data.obtainedMarks}</td>
               </tr>
             ))}
           </tbody>

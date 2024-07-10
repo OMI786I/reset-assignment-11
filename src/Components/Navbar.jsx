@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
+import MyList from "./MyList";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -90,41 +91,39 @@ const Navbar = () => {
           </ul>
         </div>
         {user ? (
-          <div className="navbar-end gap-2">
-            <div className="dropdown dropdown-end">
-              <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src={user.photoURL}></img>
-                </div>
-              </label>
-              <ul
-                tabIndex="0"
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          <div className="navbar-end gap-2  ">
+            <div className="flex md:flex-row-reverse">
+              {" "}
+              <button
+                className="btn btn-success text-white  md:btn-md"
+                onClick={handleSignOut}
               >
-                {" "}
-                <li className="font-bold border-2 text-center">
-                  {user.displayName}
-                </li>
-                <li>
-                  <a>Item 1</a>
-                </li>
-                <li>
-                  <a>Item 2</a>
-                </li>
-              </ul>
+                LogOut
+              </button>
+              <div className="dropdown dropdown-end ">
+                <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src={user.photoURL}></img>
+                  </div>
+                </label>
+                <ul
+                  tabIndex="0"
+                  className="menu dropdown-content dropdown-bottom mt-3 p-2 shadow bg-white rounded-box w-auto z-50 "
+                >
+                  {" "}
+                  <li className="font-bold border-2 text-center">
+                    My Submitted Assignment
+                  </li>
+                  <MyList></MyList>
+                </ul>
+              </div>
             </div>
-            <button
-              className="btn btn-success text-white"
-              onClick={handleSignOut}
-            >
-              LogOut
-            </button>
           </div>
         ) : (
           <div className="navbar-end gap-2">
             {" "}
             <NavLink to="login">
-              <button className="btn btn-success text-white">Login</button>
+              <button className="btn btn-success text-white ">Login</button>
             </NavLink>
             <NavLink to="register">
               <button className="btn btn-warning text-white">Register</button>
