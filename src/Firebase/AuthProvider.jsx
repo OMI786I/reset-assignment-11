@@ -51,19 +51,26 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
       setUser(currentUser);
 
       setLoading(false);
       //if user exists then issue a token
 
       if (currentUser) {
-        const loggedUser = { email: currentUser.email };
         axios
           .post("http://localhost:5000/jwt", loggedUser, {
             withCredentials: true,
           })
+          .then((res) => {});
+      } else {
+        axios
+          .post("http://localhost:5000/logout", loggedUser, {
+            withCredentials: true,
+          })
           .then((res) => {
-            console.log("token reposnse", res.data);
+            console.log(res.data);
           });
       }
     });
