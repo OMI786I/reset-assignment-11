@@ -115,7 +115,7 @@ const SubmissionForm = () => {
               className="textarea textarea-bordered textarea-lg w-full resize-none"
             ></textarea>
           </div>
-          <button className="btn btn-primary text-white"> Submit</button>
+          <button className="btn  btn-warning "> Submit</button>
         </form>
       </div>
     );

@@ -15,7 +15,7 @@ const Banner = () => {
               Let us do group study. You can easily give your assignment and do
               other's assignment. A great opportunity for all{" "}
             </p>
-            <button className="btn btn-white">Get Started</button>
+            <button className="btn btn-warning ">Get Started</button>
           </div>
         </div>
       </div>
