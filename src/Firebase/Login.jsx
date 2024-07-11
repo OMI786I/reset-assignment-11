@@ -43,14 +43,6 @@ const Login = () => {
         toast.success("Successfully logged in");
 
         navigate(location?.state ? location.state : "/");
-
-        const loggedInUser = result.user;
-        console.log(loggedInUser);
-        const user = { email };
-
-        axios.post("http://localhost:5000/jwt", user).then((res) => {
-          console.log(res.json);
-        });
       })
       .catch((error) => {
         toast.error("Couldn't sign. Are you registered?");
