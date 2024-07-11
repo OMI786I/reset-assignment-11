@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const PendingAssignments = () => {
   const [data, setData] = useState([]);
@@ -49,9 +50,11 @@ const PendingAssignments = () => {
                     {data.submitterName}
                   </div>
                   <div>
-                    <button className="btn btn-success text-white">
-                      Give Mark
-                    </button>
+                    <Link to={`/evaluationCopy/${data._id}`}>
+                      <button className="btn btn-success text-white">
+                        Give Mark
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

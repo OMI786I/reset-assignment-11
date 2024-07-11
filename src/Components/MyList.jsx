@@ -23,6 +23,8 @@ const MyList = () => {
   }, [email]);
 
   console.log(data);
+
+  console.log(data);
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">

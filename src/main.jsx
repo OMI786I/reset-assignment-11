@@ -15,6 +15,7 @@ import UpdatedAssignment from "./Components/UpdatedAssignment.jsx";
 import Details from "./Components/Details.jsx";
 import SubmissionForm from "./Components/SubmissionForm.jsx";
 import MyList from "./Components/MyList.jsx";
+import EvaluationCopy from "./Components/EvaluationCopy.jsx";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Details></Details>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/evaluationCopy/:id",
+        element: (
+          <PrivateRoute>
+            <EvaluationCopy></EvaluationCopy>
           </PrivateRoute>
         ),
       },
