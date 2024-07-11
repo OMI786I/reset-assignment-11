@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
 const EvaluationCopy = () => {
@@ -11,6 +12,35 @@ const EvaluationCopy = () => {
 
   const handleGiveMark = (e) => {
     e.preventDefault();
+  };
+
+  const handleGiveMarks = (event) => {
+    event.preventDefault();
+    const form = event.target;
+
+    const obtainedMarks = form.obtainedMarks.value;
+    const feedback = form.feedback.value;
+    const status = "marked";
+
+    const newData = {
+      obtainedMarks,
+      feedback,
+      status,
+    };
+    console.log(newData);
+
+    //update operation
+    axios
+      .put(`http://localhost:5000/submission/${params.id}`, newData)
+      .then((response) => {
+        if (response.data.modifiedCount > 0) {
+          toast.success("You have successfully Given marks");
+        }
+      })
+      .catch((error) => {
+        toast.error("There was an error ");
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -87,7 +117,7 @@ const EvaluationCopy = () => {
           </div>
         </div>
         <div className="hero-content">
-          <form>
+          <form onSubmit={handleGiveMarks}>
             <div className="">
               <div>
                 <h1 className="text-xl text-black border bg-warning rounded-xl">
