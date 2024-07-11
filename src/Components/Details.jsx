@@ -1,61 +1,17 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FcDocument } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
 import { FcBiohazard } from "react-icons/fc";
 import { FcLeave } from "react-icons/fc";
 import { format } from "date-fns";
-import { AuthContext } from "../Firebase/AuthProvider";
-import toast from "react-hot-toast";
 
 const Details = () => {
   const params = useParams();
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const { user } = useContext(AuthContext);
-  const submitterEmail = user.email;
-  const name = user.reloadUserInfo.screenName;
-
-  const submitterName = user.displayName ? user.displayName : name;
-  const status = "pending";
-  const obtainedMarks = "not yet evaluated";
-  const title = data.title;
-  const description = data.description;
-  const marks = data.marks;
-  const difficulty = data.difficulty;
-  const userEmail = data.userEmail;
-  const startDate = data.startDate;
-  const photo = data.photo;
-  const feedback = "No feedback yet";
-
-  const submitData = {
-    title,
-    description,
-    marks,
-    difficulty,
-    userEmail,
-    startDate,
-    photo,
-    submitterEmail,
-    status,
-    obtainedMarks,
-    submitterName,
-    feedback,
-  };
-
-  const handleTakeAssignment = () => {
-    axios
-      .post("http://localhost:5000/submission", submitData)
-      .then((response) => {
-        toast.success("successfully taken the assignment");
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   useEffect(() => {
     setLoading(true);
@@ -117,11 +73,8 @@ const Details = () => {
               </div>
             </div>
 
-            <Link to={`/submission/${data._id}`}>
-              <button
-                className="btn btn-success text-white"
-                onClick={() => handleTakeAssignment()}
-              >
+            <Link to={`/submission/${data._id}`} state={data}>
+              <button className="btn btn-success text-white">
                 Take Assignment
               </button>
             </Link>

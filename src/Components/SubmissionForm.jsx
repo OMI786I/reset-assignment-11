@@ -1,12 +1,88 @@
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../Firebase/AuthProvider";
 
 const SubmissionForm = () => {
   const params = useParams();
-  console.log(params.id);
+
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  const { user } = useContext(AuthContext);
+  const submitterEmail = user.email;
+  const name = user.reloadUserInfo.screenName;
+
+  const submitterName = user.displayName ? user.displayName : name;
+  const status = "pending";
+  const obtainedMarks = "not yet evaluated";
+  const title = data.title;
+  const description = data.description;
+  const marks = data.marks;
+  const difficulty = data.difficulty;
+  const userEmail = data.userEmail;
+  const startDate = data.startDate;
+  const photo = data.photo;
+  const feedback = "No feedback yet";
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`http://localhost:5000/createdAssignment/${params.id}`)
+      .then((assignment) => {
+        setData(assignment.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  }, []);
+
+  console.log(data);
+
+  const handleTakeAssignment = (e) => {
+    e.preventDefault();
+    console.log(e.currentTarget);
+    const form = new FormData(e.currentTarget);
+    const link = form.get("link");
+    const notes = form.get("notes");
+    const submitData = {
+      title,
+      description,
+      marks,
+      difficulty,
+      userEmail,
+      startDate,
+      photo,
+      submitterEmail,
+      status,
+      obtainedMarks,
+      submitterName,
+      feedback,
+      link,
+      notes,
+    };
+
+    axios
+      .post("http://localhost:5000/submission", submitData)
+      .then((response) => {
+        toast.success("successfully taken the assignment");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
-      <form className="card-body md:w-[50%] mx-auto bg-green-600 rounded-2xl mt-10 ">
+      <form
+        className="card-body md:w-[50%] mx-auto bg-green-600 rounded-2xl mt-10 "
+        onSubmit={handleTakeAssignment}
+      >
         <div className="form-control">
           <label className="label">
             <span className="label-text text-white">
@@ -15,7 +91,7 @@ const SubmissionForm = () => {
             </span>
           </label>
           <input
-            name="title"
+            name="link"
             type="text"
             placeholder=" title"
             className="input input-bordered"
@@ -27,11 +103,12 @@ const SubmissionForm = () => {
             <span className="label-text text-white"> Quick Text Notes</span>
           </label>
           <textarea
-            name="description"
-            placeholder="description"
+            name="notes"
+            placeholder="Notes"
             className="textarea textarea-bordered textarea-lg w-full resize-none"
           ></textarea>
         </div>
+        <button className="btn btn-primary text-white"> Submit</button>
       </form>
     </div>
   );

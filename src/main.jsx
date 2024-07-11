@@ -80,7 +80,12 @@ const router = createBrowserRouter([
 
       {
         path: "/submission/:id",
-        element: <SubmissionForm></SubmissionForm>,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <SubmissionForm></SubmissionForm>
+          </PrivateRoute>
+        ),
       },
     ],
   },
