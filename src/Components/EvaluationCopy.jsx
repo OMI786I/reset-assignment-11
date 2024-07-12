@@ -31,7 +31,9 @@ const EvaluationCopy = () => {
 
     //update operation
     axios
-      .put(`http://localhost:5000/submission/${params.id}`, newData)
+      .put(`http://localhost:5000/submission/${params.id}`, newData, {
+        withCredentials: "true",
+      })
       .then((response) => {
         if (response.data.modifiedCount > 0) {
           toast.success("You have successfully Given marks");
@@ -46,7 +48,9 @@ const EvaluationCopy = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/submission/${params.id}`)
+      .get(`http://localhost:5000/submission/${params.id}`, {
+        withCredentials: "true",
+      })
       .then((assignment) => {
         setData(assignment.data);
         setLoading(false);

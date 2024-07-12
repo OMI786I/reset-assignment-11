@@ -20,7 +20,9 @@ const Assignments = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/createdAssignment?difficulty=${sortOrder}`)
+      .get(`http://localhost:5000/createdAssignment?difficulty=${sortOrder}`, {
+        withCredentials: "true",
+      })
       .then((assignment) => {
         setData(assignment.data);
         setLoading(false);
@@ -46,7 +48,9 @@ const Assignments = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`http://localhost:5000/createdAssignment/${id}`)
+            .delete(`http://localhost:5000/createdAssignment/${id}`, {
+              withCredentials: "true",
+            })
             .then((res) => {
               console.log(res);
               if (res.data.deletedCount > 0) {

@@ -8,7 +8,9 @@ const PendingAssignments = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/submission?status=pending&sort=1")
+      .get("http://localhost:5000/submission?status=pending&sort=1", {
+        withCredentials: "true",
+      })
       .then((assignment) => {
         setData(assignment.data);
         setLoading(false);

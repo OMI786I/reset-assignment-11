@@ -30,7 +30,9 @@ const SubmissionForm = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/createdAssignment/${params.id}`)
+      .get(`http://localhost:5000/createdAssignment/${params.id}`, {
+        withCredentials: "true",
+      })
       .then((assignment) => {
         setData(assignment.data);
         setLoading(false);
@@ -67,7 +69,9 @@ const SubmissionForm = () => {
     };
 
     axios
-      .post("http://localhost:5000/submission", submitData)
+      .post("http://localhost:5000/submission", submitData, {
+        withCredentials: "true",
+      })
       .then((response) => {
         toast.success("successfully taken the assignment");
         console.log(response);

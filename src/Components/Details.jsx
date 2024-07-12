@@ -16,7 +16,9 @@ const Details = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/createdAssignment/${params.id}`)
+      .get(`http://localhost:5000/createdAssignment/${params.id}`, {
+        withCredentials: "true",
+      })
       .then((assignment) => {
         setData(assignment.data);
         setLoading(false);

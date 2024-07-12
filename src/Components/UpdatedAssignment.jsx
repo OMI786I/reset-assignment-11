@@ -19,7 +19,9 @@ const UpdatedAssignment = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/createdAssignment/${params.id}`)
+      .get(`http://localhost:5000/createdAssignment/${params.id}`, {
+        withCredentials: "true",
+      })
       .then((res) => {
         setData(res.data);
         console.log(res);
@@ -53,7 +55,9 @@ const UpdatedAssignment = () => {
 
     //update operation
     axios
-      .put(`http://localhost:5000/createdAssignment/${params.id}`, newData)
+      .put(`http://localhost:5000/createdAssignment/${params.id}`, newData, {
+        withCredentials: "true",
+      })
       .then((response) => {
         if (response.data.modifiedCount > 0) {
           toast.success("You have successfully updated");
