@@ -16,11 +16,13 @@ import Details from "./Components/Details.jsx";
 import SubmissionForm from "./Components/SubmissionForm.jsx";
 import MyList from "./Components/MyList.jsx";
 import EvaluationCopy from "./Components/EvaluationCopy.jsx";
+import ErrorPage from "./Components/ErrorPage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
