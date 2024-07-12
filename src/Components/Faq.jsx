@@ -40,7 +40,7 @@ const Faq = () => {
               <div className="collapse-title text-xl font-medium bg-[#ffbe00] text-black">
                 {dat.question}
               </div>
-              <div className="collapse-content bg-base-200 text-black ">
+              <div className="collapse-content bg-white text-black ">
                 <p>{dat.answer}</p>
               </div>
             </div>

@@ -3,7 +3,7 @@ const Footer = () => {
     <div>
       <footer className="footer  text-base-content p-10 border-y-2">
         <aside>
-          <img src="pngegg_(1).png" className="w-40"></img>
+          <img src="pngegg_(1).png" className="w-10"></img>
           <p>
             ACME Industries Ltd.
             <br />

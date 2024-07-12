@@ -30,7 +30,7 @@ const Features = () => {
   } else
     return (
       <div className="my-20 bg-base-200 rounded-xl ">
-        <h1 className="text-3xl text-center my-10 bg-[#ffb300] p-8">
+        <h1 className="text-3xl text-center my-10 bg-[#ffb300] p-8 text-black">
           Features
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
