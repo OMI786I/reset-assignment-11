@@ -1,0 +1,32 @@
+[
+  {
+    "icon": "https://i.ibb.co/b6xmHBH/file-upload-3616929.png",
+    "title": "Effortless Assignment Submission",
+    "description": "Upload files or provide a website link directly. Our user-friendly interface makes submitting assignments a breeze!"
+  },
+  {
+    "icon": "https://i.ibb.co/BVZtR57/gallery-3089196.png",
+    "title": "Explore a World of Websites",
+    "description": "Gain inspiration and learn from peers! Discover a gallery of submitted websites after deadlines or with instructor permission."
+  },
+  {
+    "icon": "https://i.ibb.co/JKxr6XS/clock-12476630.png",
+    "title": "Never Miss a Deadline Again",
+    "description": "Stay organized with clear deadline displays and pending submission notifications. Prioritize your work and ensure timely completion."
+  },
+  {
+    "icon": "https://i.ibb.co/8b5sCkb/25533.jpg",
+    "title": "Provide Constructive Feedback (Instructors Only)",
+    "description": "Instructors can access a dedicated grading interface to offer detailed feedback and marks on student assignments."
+  },
+  {
+    "icon": "https://i.ibb.co/qMprwJh/eye-128644.png",
+    "title": "Peer Review Option (Optional)",
+    "description": "Enable peer review functionality (optional). Students can provide feedback on each other's work, fostering a collaborative learning environment."
+  },
+  {
+    "icon": "https://i.ibb.co/CWtLzK6/inbox-1395610.png",
+    "title": "Access Past Submissions (For All)",
+    "description": "Students and instructors can access past submissions for reference or portfolio building. Review progress and track learning over time."
+  }
+]
