@@ -9,7 +9,7 @@ const AvatarTable = () => {
 
   const email = user.email;
 
-  useEffect(() => {
+  const fetchData = () => {
     setLoading(true);
     axios
       .get(`http://localhost:5000/submission?submitterEmail=${email}&sort=1`, {
@@ -23,35 +23,37 @@ const AvatarTable = () => {
         console.log(error);
         setLoading(false);
       });
-  }, [email]);
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
-  } else
-    return (
-      <div className="overflow-auto">
-        <table className="table table-xs">
-          <thead>
-            <th>Title</th>
-            <th>status</th>
+  };
 
-            <th>obtainedMarks</th>
-          </thead>
-          <tbody>
-            {data.map((data) => (
-              <tr key={data._id}>
-                <td>{data.title}</td>
-                <td>{data.status}</td>
-                <td> {data.obtainedMarks}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
+  useEffect(() => {
+    setLoading(true);
+    fetchData();
+    const intervalId = setInterval(fetchData, 1000); // Poll every 5 seconds
+
+    return () => clearInterval(intervalId); // Clean up the interval on component unmount
+  }, [email]);
+
+  return (
+    <div className="overflow-auto">
+      <table className="table table-xs">
+        <thead>
+          <th>Title</th>
+          <th>status</th>
+
+          <th>obtainedMarks</th>
+        </thead>
+        <tbody>
+          {data.map((data) => (
+            <tr key={data._id}>
+              <td>{data.title}</td>
+              <td>{data.status}</td>
+              <td> {data.obtainedMarks}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default AvatarTable;
