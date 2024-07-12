@@ -29,7 +29,7 @@ const Navbar = () => {
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
-  console.log(user);
+  //console.log(user);
 
   const navLink = (
     <div className="flex-row md:flex-col gap-6  ">

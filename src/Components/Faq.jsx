@@ -19,7 +19,7 @@ const Faq = () => {
       });
   }, []);
 
-  console.log(data);
+  //console.log(data);
 
   if (loading) {
     return (

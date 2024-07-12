@@ -20,9 +20,12 @@ const Assignments = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/createdAssignment?difficulty=${sortOrder}`, {
-        withCredentials: "true",
-      })
+      .get(
+        `https://a11-three.vercel.app/createdAssignment?difficulty=${sortOrder}`,
+        {
+          withCredentials: "true",
+        }
+      )
       .then((assignment) => {
         setData(assignment.data);
         setLoading(false);
@@ -48,11 +51,11 @@ const Assignments = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`http://localhost:5000/createdAssignment/${id}`, {
+            .delete(`https://a11-three.vercel.app/createdAssignment/${id}`, {
               withCredentials: "true",
             })
             .then((res) => {
-              console.log(res);
+              //console.log(res);
               if (res.data.deletedCount > 0) {
                 Swal.fire({
                   title: "Deleted!",

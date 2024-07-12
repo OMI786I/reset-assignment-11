@@ -16,7 +16,7 @@ const Details = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/createdAssignment/${params.id}`, {
+      .get(`https://a11-three.vercel.app/createdAssignment/${params.id}`, {
         withCredentials: "true",
       })
       .then((assignment) => {
@@ -32,7 +32,7 @@ const Details = () => {
   const date = data.startDate
     ? format(data.startDate, "dd MMMM yyyy")
     : "date not available";
-  console.log(date);
+  //console.log(date);
 
   if (loading) {
     return (

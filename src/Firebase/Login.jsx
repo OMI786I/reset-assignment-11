@@ -18,7 +18,7 @@ const Login = () => {
 
   const handleGoogle = () => {
     googleSignIn().then((result) => {
-      console.log(result.user);
+      //console.log(result.user);
       navigate(location?.state ? location.state : "/");
       toast.success("Successfully logged in");
     });
@@ -26,7 +26,7 @@ const Login = () => {
 
   const handleGitHub = () => {
     githubSignIn().then((result) => {
-      console.log(result.user);
+      //console.log(result.user);
       navigate(location?.state ? location.state : "/");
       toast.success("Successfully logged in");
     });
@@ -34,7 +34,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget);
+    //console.log(e.currentTarget);
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");

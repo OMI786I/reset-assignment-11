@@ -30,7 +30,7 @@ const SubmissionForm = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/createdAssignment/${params.id}`, {
+      .get(`https://a11-three.vercel.app/createdAssignment/${params.id}`, {
         withCredentials: "true",
       })
       .then((assignment) => {
@@ -43,11 +43,11 @@ const SubmissionForm = () => {
       });
   }, []);
 
-  console.log(data);
+  //console.log(data);
 
   const handleTakeAssignment = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget);
+    //console.log(e.currentTarget);
     const form = new FormData(e.currentTarget);
     const link = form.get("link");
     const notes = form.get("notes");
@@ -69,15 +69,15 @@ const SubmissionForm = () => {
     };
 
     axios
-      .post("http://localhost:5000/submission", submitData, {
+      .post("https://a11-three.vercel.app/submission", submitData, {
         withCredentials: "true",
       })
       .then((response) => {
         toast.success("successfully taken the assignment");
-        console.log(response);
+        //console.log(response);
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
       });
   };
 

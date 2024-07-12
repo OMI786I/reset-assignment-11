@@ -8,7 +8,7 @@ const EvaluationCopy = () => {
   const [data, setData] = useState([]);
 
   const params = useParams();
-  console.log(params.id);
+  //console.log(params.id);
 
   const handleGiveMark = (e) => {
     e.preventDefault();
@@ -27,11 +27,11 @@ const EvaluationCopy = () => {
       feedback,
       status,
     };
-    console.log(newData);
+    //console.log(newData);
 
     //update operation
     axios
-      .put(`http://localhost:5000/submission/${params.id}`, newData, {
+      .put(`https://a11-three.vercel.app/submission/${params.id}`, newData, {
         withCredentials: "true",
       })
       .then((response) => {
@@ -41,14 +41,14 @@ const EvaluationCopy = () => {
       })
       .catch((error) => {
         toast.error("There was an error ");
-        console.log(error);
+        //console.log(error);
       });
   };
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/submission/${params.id}`, {
+      .get(`https://a11-three.vercel.app/submission/${params.id}`, {
         withCredentials: "true",
       })
       .then((assignment) => {

@@ -7,7 +7,7 @@ const ErrorPage = () => {
     navigate(-1);
   };
 
-  console.log(error);
+  //console.log(error);
   return (
     <div>
       <section className="bg-white dark:bg-gray-900 ">

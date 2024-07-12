@@ -12,19 +12,19 @@ const UpdatedAssignment = () => {
   const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
 
-  console.log(startDate);
+  //console.log(startDate);
 
   //get operation
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/createdAssignment/${params.id}`, {
+      .get(`https://a11-three.vercel.app/createdAssignment/${params.id}`, {
         withCredentials: "true",
       })
       .then((res) => {
         setData(res.data);
-        console.log(res);
+        //console.log(res);
         setLoading(false);
       })
       .catch((error) => {
@@ -51,13 +51,17 @@ const UpdatedAssignment = () => {
       startDate,
       photo,
     };
-    console.log(newData);
+    //console.log(newData);
 
     //update operation
     axios
-      .put(`http://localhost:5000/createdAssignment/${params.id}`, newData, {
-        withCredentials: "true",
-      })
+      .put(
+        `https://a11-three.vercel.app/createdAssignment/${params.id}`,
+        newData,
+        {
+          withCredentials: "true",
+        }
+      )
       .then((response) => {
         if (response.data.modifiedCount > 0) {
           toast.success("You have successfully updated");
@@ -66,7 +70,7 @@ const UpdatedAssignment = () => {
       })
       .catch((error) => {
         toast.error("There was an error updated the data");
-        console.log(error);
+        //console.log(error);
       });
   };
 

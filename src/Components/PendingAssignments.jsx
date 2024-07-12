@@ -8,7 +8,7 @@ const PendingAssignments = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/submission?status=pending&sort=1", {
+      .get("https://a11-three.vercel.app/submission?status=pending&sort=1", {
         withCredentials: "true",
       })
       .then((assignment) => {
@@ -16,11 +16,11 @@ const PendingAssignments = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
         setLoading(false);
       });
   }, []);
-  console.log(data);
+  //console.log(data);
 
   if (loading) {
     return (

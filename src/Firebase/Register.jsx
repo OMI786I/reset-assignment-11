@@ -11,7 +11,7 @@ const Register = () => {
   const { createUser } = useContext(AuthContext);
   const handleRegitser = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget);
+    //console.log(e.currentTarget);
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");

@@ -19,7 +19,7 @@ const Features = () => {
       });
   }, []);
 
-  console.log(data);
+  //console.log(data);
 
   if (loading) {
     return (

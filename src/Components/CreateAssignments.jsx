@@ -11,8 +11,8 @@ const CreateAssignments = () => {
   const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState(new Date());
   const userEmail = user.email;
-  console.log(userEmail);
-  console.log(startDate);
+  //console.log(userEmail);
+  //console.log(startDate);
 
   const handleAddAssignment = (event) => {
     event.preventDefault();
@@ -32,19 +32,19 @@ const CreateAssignments = () => {
       startDate,
       photo,
     };
-    console.log(newData);
+    //console.log(newData);
 
     axios
-      .post("http://localhost:5000/createdAssignment", newData)
+      .post("https://a11-three.vercel.app/createdAssignment", newData)
       .then((response) => {
         if (response.data.insertedId) {
           toast.success("You have successfully added");
         }
-        console.log(response);
+        //console.log(response);
       })
       .catch((error) => {
         toast.error("There was an error adding the data");
-        console.log(error);
+        //console.log(error);
       });
   };
 

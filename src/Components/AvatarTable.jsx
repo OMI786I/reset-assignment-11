@@ -12,15 +12,18 @@ const AvatarTable = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/submission?submitterEmail=${email}&sort=1`, {
-        withCredentials: "true",
-      })
+      .get(
+        `https://a11-three.vercel.app/submission?submitterEmail=${email}&sort=1`,
+        {
+          withCredentials: "true",
+        }
+      )
       .then((assignment) => {
         setData(assignment.data);
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
         setLoading(false);
       });
   }, []);
