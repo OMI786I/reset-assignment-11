@@ -5,23 +5,27 @@ import { FcBiohazard } from "react-icons/fc";
 import { AuthContext } from "../Firebase/AuthProvider";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 const Assignments = () => {
-  const [data, setData] = useState([]);
+  const count = useLoaderData();
 
+  const [data, setData] = useState([]);
+  console.log(data);
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState("");
   const { user } = useContext(AuthContext);
   const [search, setSearch] = useState("");
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
-  const numberOfPages = Math.ceil(data.length / itemsPerPage);
+
+  const numberOfPages = Math.ceil(count.length / itemsPerPage);
   console.log(numberOfPages);
   const pages = [...Array(numberOfPages).keys()];
   const handleSort = (order) => {
     setSortOrder(order);
   };
   console.log(search);
+
   useEffect(() => {
     setLoading(true);
     axios
