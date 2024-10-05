@@ -30,7 +30,7 @@ const Assignments = () => {
     setLoading(true);
     axios
       .get(
-        `http://localhost:5000/createdAssignment?difficulty=${sortOrder}&page=${currentPage}&size=${itemsPerPage}`,
+        `http://localhost:5000/createdAssignment?difficulty=${sortOrder}&page=${currentPage}&size=${itemsPerPage}&search=${search}`,
         {
           withCredentials: "true",
         }
@@ -43,7 +43,10 @@ const Assignments = () => {
         console.error(error);
         setLoading(false);
       });
-  }, [sortOrder, currentPage, itemsPerPage]);
+  }, [sortOrder, currentPage, itemsPerPage, search]);
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [search]);
 
   //delete operation
 
@@ -100,55 +103,52 @@ const Assignments = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
+  return (
+    <div>
+      <div className="text-center">
+        <label className="font-bold mr-2">Search Here</label>
+        <input
+          type="text"
+          placeholder="Type here"
+          className="input input-bordered w-full max-w-xs"
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </div>
-    );
-  } else
-    return (
+      <div className="text-center my-4">
+        <label htmlFor="sortOrder" className="font-bold mr-2">
+          FIlter by Difficulty:
+        </label>
+        <select
+          id="sortOrder"
+          value={sortOrder}
+          onChange={(e) => handleSort(e.target.value)}
+          className="border rounded p-2"
+        >
+          <option value="">All</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
       <div>
-        <div className="text-center">
-          <label className="font-bold mr-2">Search Here</label>
-          <input
-            type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
-            onChange={(e) => setSearch(e.target.value)}
-          />
+        <label>Items per page: </label>
+        <select
+          value={itemsPerPage}
+          onChange={handleItemsPerPage}
+          name=""
+          id=""
+        >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+      </div>
+      {loading ? (
+        <div className="flex justify-center items-center h-screen">
+          <span className="loading loading-spinner loading-lg"></span>
         </div>
-        <div className="text-center my-4">
-          <label htmlFor="sortOrder" className="font-bold mr-2">
-            FIlter by Difficulty:
-          </label>
-          <select
-            id="sortOrder"
-            value={sortOrder}
-            onChange={(e) => handleSort(e.target.value)}
-            className="border rounded p-2"
-          >
-            <option value="">All</option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-        </div>
-        <div>
-          <label>Items per page: </label>
-          <select
-            value={itemsPerPage}
-            onChange={handleItemsPerPage}
-            name=""
-            id=""
-          >
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="50">50</option>
-          </select>
-        </div>
-
+      ) : (
         <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
           {data
             .filter((data) => {
@@ -212,28 +212,30 @@ const Assignments = () => {
               </div>
             ))}
         </div>
-        <div className="my-12 flex justify-center">
-          <button className="btn" onClick={handlePrevPage}>
-            Prev
+      )}
+
+      <div className="my-12 flex justify-center">
+        <button className="btn" onClick={handlePrevPage}>
+          Prev
+        </button>
+        {pages.map((page) => (
+          <button
+            className={
+              (currentPage === page && "btn bg-orange-700") ||
+              "btn bg-orange-500"
+            }
+            onClick={() => setCurrentPage(page)}
+            key={page}
+          >
+            {page}
           </button>
-          {pages.map((page) => (
-            <button
-              className={
-                (currentPage === page && "btn bg-orange-700") ||
-                "btn bg-orange-500"
-              }
-              onClick={() => setCurrentPage(page)}
-              key={page}
-            >
-              {page}
-            </button>
-          ))}
-          <button className="btn" onClick={handleNextPage}>
-            Next
-          </button>
-        </div>
+        ))}
+        <button className="btn" onClick={handleNextPage}>
+          Next
+        </button>
       </div>
-    );
+    </div>
+  );
 };
 
 export default Assignments;
