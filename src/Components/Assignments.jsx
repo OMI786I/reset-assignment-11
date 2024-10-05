@@ -14,6 +14,7 @@ const Assignments = () => {
   const { user } = useContext(AuthContext);
   const [search, setSearch] = useState("");
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(0);
   const numberOfPages = Math.ceil(data.length / itemsPerPage);
   console.log(numberOfPages);
   const pages = [...Array(numberOfPages).keys()];
@@ -81,6 +82,18 @@ const Assignments = () => {
     const val = parseInt(e.target.value);
     console.log(val);
     setItemsPerPage(val);
+    setCurrentPage(0);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   if (loading) {
@@ -131,7 +144,7 @@ const Assignments = () => {
             <option value="50">50</option>
           </select>
         </div>
-        ;
+
         <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
           {data
             .filter((data) => {
@@ -196,11 +209,24 @@ const Assignments = () => {
             ))}
         </div>
         <div className="my-12 flex justify-center">
+          <button className="btn" onClick={handlePrevPage}>
+            Prev
+          </button>
           {pages.map((page) => (
-            <button className="btn " key={page}>
+            <button
+              className={
+                (currentPage === page && "btn bg-orange-700") ||
+                "btn bg-orange-500"
+              }
+              onClick={() => setCurrentPage(page)}
+              key={page}
+            >
               {page}
             </button>
           ))}
+          <button className="btn" onClick={handleNextPage}>
+            Next
+          </button>
         </div>
       </div>
     );
