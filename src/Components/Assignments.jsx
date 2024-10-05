@@ -12,11 +12,11 @@ const Assignments = () => {
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState("");
   const { user } = useContext(AuthContext);
-
+  const [search, setSearch] = useState("");
   const handleSort = (order) => {
     setSortOrder(order);
   };
-
+  console.log(search);
   useEffect(() => {
     setLoading(true);
     axios
@@ -82,6 +82,15 @@ const Assignments = () => {
   } else
     return (
       <div>
+        <div className="text-center">
+          <label className="font-bold mr-2">Search Here</label>
+          <input
+            type="text"
+            placeholder="Type here"
+            className="input input-bordered w-full max-w-xs"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
         <div className="text-center my-4">
           <label htmlFor="sortOrder" className="font-bold mr-2">
             FIlter by Difficulty:
@@ -100,61 +109,67 @@ const Assignments = () => {
         </div>
         ;
         <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
-          {data.map((data) => (
-            <div key={data._id}>
-              <div className="card bg-base-100 w-auto md:w-80 xl:w-96 shadow-xl">
-                <figure>
-                  <img src={data.photo} alt="Shoes" className="w-96 h-56" />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title text-2xl">{data.title}</h2>
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center">
-                      {" "}
-                      <span>
-                        <FcOk></FcOk>
-                      </span>
-                      <span className="font-bold">marks: {data.marks}</span>
-                    </div>
-
-                    <div className="flex items-center">
-                      <FcBiohazard className="text-xl"></FcBiohazard>{" "}
-                      <span className="font-bold">
-                        difficulty: {data.difficulty}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <div className="card-actions justify-end">
-                      <button
-                        className="btn btn-success text-white"
-                        onClick={() => {
-                          handleDelete(data._id, data.userEmail);
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                    <div className="card-actions justify-end">
-                      <Link to={`/update/${data._id}`}>
-                        <button className="btn btn-success text-white">
-                          Update
-                        </button>
-                      </Link>
-                    </div>
-                    <div className="card-actions justify-end">
-                      <Link to={`/details/${data._id}`}>
+          {data
+            .filter((data) => {
+              return search.toLowerCase() === ""
+                ? data
+                : data.title.toLowerCase().includes(search.toLowerCase());
+            })
+            .map((data) => (
+              <div key={data._id}>
+                <div className="card bg-base-100 w-auto md:w-80 xl:w-96 shadow-xl">
+                  <figure>
+                    <img src={data.photo} alt="Shoes" className="w-96 h-56" />
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title text-2xl">{data.title}</h2>
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center">
                         {" "}
-                        <button className="btn btn-success text-white">
-                          View
+                        <span>
+                          <FcOk></FcOk>
+                        </span>
+                        <span className="font-bold">marks: {data.marks}</span>
+                      </div>
+
+                      <div className="flex items-center">
+                        <FcBiohazard className="text-xl"></FcBiohazard>{" "}
+                        <span className="font-bold">
+                          difficulty: {data.difficulty}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="card-actions justify-end">
+                        <button
+                          className="btn btn-success text-white"
+                          onClick={() => {
+                            handleDelete(data._id, data.userEmail);
+                          }}
+                        >
+                          Delete
                         </button>
-                      </Link>
+                      </div>
+                      <div className="card-actions justify-end">
+                        <Link to={`/update/${data._id}`}>
+                          <button className="btn btn-success text-white">
+                            Update
+                          </button>
+                        </Link>
+                      </div>
+                      <div className="card-actions justify-end">
+                        <Link to={`/details/${data._id}`}>
+                          {" "}
+                          <button className="btn btn-success text-white">
+                            View
+                          </button>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     );
