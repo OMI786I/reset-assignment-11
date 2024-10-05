@@ -13,6 +13,10 @@ const Assignments = () => {
   const [sortOrder, setSortOrder] = useState("");
   const { user } = useContext(AuthContext);
   const [search, setSearch] = useState("");
+  const itemsPerPage = 10;
+  const numberOfPages = Math.ceil(data.length / itemsPerPage);
+  console.log(numberOfPages);
+  const pages = [...Array(numberOfPages).keys()];
   const handleSort = (order) => {
     setSortOrder(order);
   };
@@ -170,6 +174,13 @@ const Assignments = () => {
                 </div>
               </div>
             ))}
+        </div>
+        <div className="my-12 flex justify-center">
+          {pages.map((page) => (
+            <button className="btn " key={page}>
+              {page}
+            </button>
+          ))}
         </div>
       </div>
     );
