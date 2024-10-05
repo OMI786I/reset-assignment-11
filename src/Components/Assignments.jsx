@@ -26,7 +26,7 @@ const Assignments = () => {
     setLoading(true);
     axios
       .get(
-        `https://a11-three.vercel.app/createdAssignment?difficulty=${sortOrder}`,
+        `http://localhost:5000/createdAssignment?difficulty=${sortOrder}&page=${currentPage}&size=${itemsPerPage}`,
         {
           withCredentials: "true",
         }
@@ -39,7 +39,7 @@ const Assignments = () => {
         console.error(error);
         setLoading(false);
       });
-  }, [sortOrder]);
+  }, [sortOrder, currentPage, itemsPerPage]);
 
   //delete operation
 
