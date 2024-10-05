@@ -13,7 +13,7 @@ const Assignments = () => {
   const [sortOrder, setSortOrder] = useState("");
   const { user } = useContext(AuthContext);
   const [search, setSearch] = useState("");
-  const itemsPerPage = 10;
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const numberOfPages = Math.ceil(data.length / itemsPerPage);
   console.log(numberOfPages);
   const pages = [...Array(numberOfPages).keys()];
@@ -77,6 +77,12 @@ const Assignments = () => {
     }
   };
 
+  const handleItemsPerPage = (e) => {
+    const val = parseInt(e.target.value);
+    console.log(val);
+    setItemsPerPage(val);
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -109,6 +115,20 @@ const Assignments = () => {
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div>
+          <label>Items per page: </label>
+          <select
+            value={itemsPerPage}
+            onChange={handleItemsPerPage}
+            name=""
+            id=""
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
           </select>
         </div>
         ;
