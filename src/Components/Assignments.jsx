@@ -30,7 +30,7 @@ const Assignments = () => {
     setLoading(true);
     axios
       .get(
-        `http://localhost:5000/createdAssignment?difficulty=${sortOrder}&page=${currentPage}&size=${itemsPerPage}&search=${search}`,
+        `https://a11-three.vercel.app/createdAssignment?difficulty=${sortOrder}&page=${currentPage}&size=${itemsPerPage}&search=${search}`,
         {
           withCredentials: "true",
         }
