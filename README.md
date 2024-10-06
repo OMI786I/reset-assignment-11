@@ -16,3 +16,8 @@ Here are the features for the website
 - Can evaluate assignment
 - Can see his own submitted assignment
 - Can see pending assignment
+
+## For workshop tasks
+
+- added search functionality on assignments page
+- added pagination functionality on assignments page
